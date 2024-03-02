@@ -24,9 +24,9 @@ class RegisterView(views.APIView):
         if serializer.is_valid():
             user = serializer.save()
             response_data = {
-                'id': user.id,
-                'email': user.email,
-                'username': user.username,
+                "id": user.id,
+                "email": user.email,
+                "username": user.username,
             }
             return Response(response_data, status=status.HTTP_201_CREATED)
 
@@ -38,7 +38,7 @@ class ProfileViewSet(viewsets.ModelViewSet):
     serializer_class = ProfileSerializer
     permission_classes = [IsModeratorOrReadOnly | IsOwnerOrReadOnly]
 
-    @action(methods=['GET'], detail=False, url_path='profile')
+    @action(methods=["GET"], detail=False, url_path="profile")
     def get_user_profile(self, request):
         user_instance = request.user
         user = Profile.objects.filter(user=user_instance)

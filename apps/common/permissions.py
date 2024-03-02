@@ -21,4 +21,4 @@ class IsOwnerOrReadOnly(BasePermission):
 
 class IsModeratorOrReadOnly(BasePermission):
     def has_permission(self, request, view):
-        return request.user.status == 'Модератор' or request.method in permissions.SAFE_METHODS
+        return request.user.status == "Модератор" or request.method in permissions.SAFE_METHODS
