@@ -6,7 +6,7 @@ from apps.user.api.v1.apis import ProfileViewSet, RegisterView, UserViewSet
 app_name = "users"
 
 router = DefaultRouter()
-router.register("", UserViewSet)
+router.register("users", UserViewSet)
 router.register("profiles", ProfileViewSet)
 
 urlpatterns = [
