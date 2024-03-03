@@ -1,6 +1,6 @@
 from rest_framework import permissions, status, views, viewsets, mixins
 from rest_framework.decorators import action
-from rest_framework.permissions import AllowAny
+import logging
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.viewsets import GenericViewSet
@@ -12,6 +12,9 @@ from apps.user.api.v1.serializers import (
     UserSerializer,
 )
 from apps.user.models import Profile, User
+
+
+logger = logging.getLogger(__name__)
 
 
 class UserViewSet(mixins.RetrieveModelMixin,
@@ -27,6 +30,7 @@ class UserViewSet(mixins.RetrieveModelMixin,
 class RegisterView(APIView):
     def post(self, request, *args, **kwargs):
         serializer = RegisterSerializer(data=request.data)
+        logger.debug(f"Register: {request.data}")
 
         if serializer.is_valid():
             user = serializer.save()
@@ -36,6 +40,8 @@ class RegisterView(APIView):
                 'username': user.username,
             }
             return Response(response_data, status=status.HTTP_201_CREATED)
+
+        print(request.data)
 
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 

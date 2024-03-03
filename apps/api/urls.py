@@ -8,7 +8,7 @@ from ..common.custom_token import CustomTokenObtainPairView
 app_name = "api"
 
 urlpatterns = [
-    path("", include("apps.user.api.v1.user_url", namespace="users")),
+    path("users/", include("apps.user.api.v1.user_url", namespace="users")),
     path("posts/", include("apps.post.api.v1.urls", namespace="posts")),
 ]
 
