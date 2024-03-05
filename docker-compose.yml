@@ -13,9 +13,9 @@ services:
   db:
     image: 'postgres:latest'
     environment:
-      POSTGRES_DB: ''
-      POSTGRES_USER: ''
-      POSTGRES_PASSWORD: ''
+      POSTGRES_DB: 'manasgram_db'
+      POSTGRES_USER: 'manasgram_user'
+      POSTGRES_PASSWORD: 'manasgram_password'
     volumes:
       - postgres_data:/var/lib/postgresql/data:rw
 
