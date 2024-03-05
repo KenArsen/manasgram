@@ -26,6 +26,14 @@ class UserViewSet(mixins.RetrieveModelMixin,
     serializer_class = UserSerializer
     permission_classes = [permissions.IsAuthenticatedOrReadOnly, IsCurrentUser]
 
+    @action(methods=['GET'], detail=False, url_path='currentuser')
+    def get_user_profile(self, request):
+        user = request.user
+        username = Profile.objects.filter(username = user)
+        serializer = self.get_serializer(username, many=True)
+
+        return Response(serializer.data)
+
 
 class RegisterView(APIView):
     def post(self, request, *args, **kwargs):
